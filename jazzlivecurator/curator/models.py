@@ -22,8 +22,10 @@ class Player(models.Model):
 
 class Live(models.Model):
     live_name = models.CharField('ライブ', max_length=200)
-    club = models.ForeignKey(Club, on_delete=models.PROTECT)
-    player = models.ForeignKey(Player, on_delete=models.PROTECT)
+    club = models.ForeignKey(
+        Club, on_delete=models.PROTECT, verbose_name="クラブ")
+    player = models.ManyToManyField(
+        Player, verbose_name="プレイヤー")
     open_time = models.DateTimeField('オープン')
     start_time = models.DateTimeField('スタート')
 
